@@ -1,0 +1,1 @@
+{"root":["./src/App.tsx","./src/main.tsx","./src/types.ts","./src/components/Composer.tsx","./src/components/Console.tsx","./src/components/Header.tsx","./src/components/SidePanel.tsx","./src/hooks/useJarvis.ts","./src/lib/api.ts","./src/lib/socket.ts","./src/lib/speech.ts"],"version":"5.9.3"}

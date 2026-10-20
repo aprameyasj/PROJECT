@@ -1,0 +1,69 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "jarvis-agent"
+version = "0.1.0"
+description = "JARVIS — a local-first personal AI agent: voice in, intent, controlled tools, real actions."
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+authors = [{ name = "Aprameya S J" }]
+keywords = ["agent", "voice", "automation", "llm", "tool-calling", "jarvis"]
+
+# Core runtime only. Optional extras (GUI automation, browser, local STT) are
+# installed on demand — see README "Installing on your own machine".
+dependencies = [
+    "fastapi>=0.110",
+    "uvicorn[standard]>=0.27",
+    "pydantic>=2.6",
+    "httpx>=0.27",
+    "APScheduler>=3.10",
+    "python-dotenv>=1.0",
+    "pillow>=10.0",
+]
+
+[project.optional-dependencies]
+desktop = [          # real mouse/keyboard/screen control (Phase 2)
+    "pyautogui>=0.9.54",
+    "psutil>=5.9",
+    "pyperclip>=1.8",
+    "screen-brightness-control>=0.22",
+]
+browser = [          # Phase 4 web agent
+    "playwright>=1.44",
+]
+voice = [            # local microphone + offline speech-to-text
+    "sounddevice>=0.4.6",
+    "numpy>=1.26",
+    "faster-whisper>=1.0",
+]
+vision = [           # Phase 5 OCR fallback
+    "pytesseract>=0.3.10",
+]
+dev = [
+    "pytest>=8.0",
+    "pytest-asyncio>=0.23",
+    "ruff>=0.4",
+]
+
+[project.scripts]
+jarvis = "jarvis.cli.commands:main"
+
+[tool.setuptools.packages.find]
+include = ["jarvis*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+asyncio_mode = "auto"
+addopts = "-q --strict-markers"
+filterwarnings = ["ignore::DeprecationWarning"]
+
+[tool.ruff]
+line-length = 118
+target-version = "py310"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B"]
+ignore = ["B008", "E501"]

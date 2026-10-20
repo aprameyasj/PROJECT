@@ -1,0 +1,39 @@
+# --- python -----------------------------------------------------------
+__pycache__/
+*.py[cod]
+*.egg-info/
+.eggs/
+.venv/
+venv/
+env/
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+.coverage
+htmlcov/
+
+# --- jarvis runtime data (database, screenshots, logs, downloads) -----
+.jarvis/
+*.db
+*.db-shm
+*.db-wal
+
+# --- node / frontend --------------------------------------------------
+node_modules/
+frontend/dist/
+.vite/
+*.local
+
+# --- editors / OS -----------------------------------------------------
+.idea/
+.vscode/
+*.swp
+.DS_Store
+Thumbs.db
+
+# --- secrets ----------------------------------------------------------
+.env
+.env.*
+!.env.example
+*.pem
+credentials.json
